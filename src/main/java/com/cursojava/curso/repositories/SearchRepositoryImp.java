@@ -17,7 +17,7 @@ public class SearchRepositoryImp implements SearchRepository{
     public List<WebPage> search(String textSearch) {
         String query = "From WebPage WHERE description like : textSearch"; //no es sql si no la sintaxis de hibernate sql
         return entityManager.createQuery(query)
-                .setParameter("textSearch", textSearch)
+                .setParameter("textSearch", "%"+textSearch+"%")
                 .getResultList();
     }
 }
