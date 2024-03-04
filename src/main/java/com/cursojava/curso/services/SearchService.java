@@ -25,4 +25,12 @@ public class SearchService {
         */
         return repository.search(textSearch);
     }
+
+    public void save(WebPage  webPage){
+        repository.save(webPage);
+    }
+
+    public boolean exist(String link) {
+        return repository.exist(link);
+    }
 }

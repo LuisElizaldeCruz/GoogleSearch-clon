@@ -12,6 +12,16 @@ public class SearchRepositoryImp implements SearchRepository{
 
     @PersistenceContext
     EntityManager entityManager;
+
+    @Override
+    public WebPage getByUrl(String url) {
+        String query = "FROM WebPage WHERE url = :url";
+        List<WebPage> list = entityManager.createQuery(query)
+                .setParameter("url", url)
+                .getResultList();
+        return list.size() == 0 ? null : list.get(0);
+    }
+
     @Transactional
     @Override
     public List<WebPage> search(String textSearch) {
@@ -19,5 +29,16 @@ public class SearchRepositoryImp implements SearchRepository{
         return entityManager.createQuery(query)
                 .setParameter("textSearch", "%"+textSearch+"%")
                 .getResultList();
+    }
+
+    @Transactional
+    @Override
+    public void save(WebPage webPage) {
+        entityManager.merge(webPage);
+    }
+
+    @Override
+    public boolean exist(String url) {
+        return getByUrl(url) != null;
     }
 }
