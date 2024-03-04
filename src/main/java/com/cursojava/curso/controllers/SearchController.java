@@ -29,7 +29,7 @@ public class SearchController {
     }
 
     @RequestMapping(value = "api/test", method = RequestMethod.GET)
-    public String search(){
-        return SpiderService.indexWebPage();
+    public void search(){
+        SpiderService.indexWebPages();
     }
 }

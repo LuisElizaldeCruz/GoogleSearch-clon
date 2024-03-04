@@ -8,6 +8,8 @@ public interface SearchRepository {
 
     WebPage getByUrl(String url);
 
+    List<WebPage> getLinksToIndex();
+
     public List<WebPage> search(String textSearch);
 
     void save(WebPage webPage);

@@ -22,6 +22,14 @@ public class SearchRepositoryImp implements SearchRepository{
         return list.size() == 0 ? null : list.get(0);
     }
 
+    @Override
+    public List<WebPage> getLinksToIndex() {
+        String query = "FROM WebPage WHERE title is null AND description is null"; //no es sql si no la sintaxis de hibernate sql
+        return entityManager.createQuery(query)
+                .setMaxResults(100)
+                .getResultList();
+    }
+
     @Transactional
     @Override
     public List<WebPage> search(String textSearch) {
