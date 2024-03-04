@@ -1,14 +1,14 @@
 package com.cursojava.curso.repositories;
+
 import com.cursojava.curso.entities.WebPage;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 @Repository
-public class SearchRepositoryImp implements SearchRepository{
+public class SearchRepositoryImp implements SearchRepository {
 
     @PersistenceContext
     EntityManager entityManager;
@@ -24,7 +24,7 @@ public class SearchRepositoryImp implements SearchRepository{
 
     @Override
     public List<WebPage> getLinksToIndex() {
-        String query = "FROM WebPage WHERE title is null AND description is null"; //no es sql si no la sintaxis de hibernate sql
+        String query = "FROM WebPage WHERE title is null AND description is null";
         return entityManager.createQuery(query)
                 .setMaxResults(100)
                 .getResultList();
@@ -33,9 +33,9 @@ public class SearchRepositoryImp implements SearchRepository{
     @Transactional
     @Override
     public List<WebPage> search(String textSearch) {
-        String query = "From WebPage WHERE description like : textSearch"; //no es sql si no la sintaxis de hibernate sql
+        String query = "FROM WebPage WHERE description like :textSearch";
         return entityManager.createQuery(query)
-                .setParameter("textSearch", "%"+textSearch+"%")
+                .setParameter("textSearch", "%" + textSearch + "%")
                 .getResultList();
     }
 

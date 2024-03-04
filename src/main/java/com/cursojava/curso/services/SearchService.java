@@ -1,32 +1,23 @@
 package com.cursojava.curso.services;
 
 import com.cursojava.curso.entities.WebPage;
-import com.cursojava.curso.repositories.SearchRepositoryImp;
+import com.cursojava.curso.repositories.SearchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class SearchService {
 
     @Autowired
-    private SearchRepositoryImp repository;
+    private SearchRepository repository;
 
-    public List<WebPage> search(String textSearch){
-        /*
-        List<WebPage> result = new ArrayList<>();
-        WebPage page = new WebPage();
-        page.setTitle("test");
-        page.setDescription("test");
-        result.add(page);
-        return result;
-        */
+    public List<WebPage> search(String textSearch) {
         return repository.search(textSearch);
     }
 
-    public void save(WebPage  webPage){
+    public void save(WebPage webPage) {
         repository.save(webPage);
     }
 
@@ -34,7 +25,7 @@ public class SearchService {
         return repository.exist(link);
     }
 
-   public  List<WebPage> getLinksToIndex(){
+    public List<WebPage> getLinksToIndex() {
         return repository.getLinksToIndex();
     }
 }

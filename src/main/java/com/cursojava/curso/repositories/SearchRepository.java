@@ -10,7 +10,7 @@ public interface SearchRepository {
 
     List<WebPage> getLinksToIndex();
 
-    public List<WebPage> search(String textSearch);
+    List<WebPage> search(String textSearch);
 
     void save(WebPage webPage);
 

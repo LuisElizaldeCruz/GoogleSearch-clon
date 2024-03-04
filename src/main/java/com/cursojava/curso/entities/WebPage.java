@@ -1,20 +1,22 @@
 package com.cursojava.curso.entities;
 
-import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import jakarta.persistence.*;
+
 @Entity
-@Table(name = "WebPage")
+@Table(name = "webpage")
 @Getter @Setter
-@ToString
+@ToString @EqualsAndHashCode
 public class WebPage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private Long id;
 
     @Column(name = "url")
     private String url;
@@ -25,11 +27,9 @@ public class WebPage {
     @Column(name = "description")
     private String description;
 
-    public WebPage(){
-
+    public WebPage() {
     }
-
-    public WebPage(String url){
+    public WebPage(String url) {
         this.url = url;
     }
 }

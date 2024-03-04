@@ -10,10 +10,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 public class ScheduleService {
 
     @Autowired
-    private SpiderService SpiderService;
+    private SpiderService spiderService;
 
     @Scheduled(cron = "0 0 0 * * ?")
-    public void scheduleIndexWebPage(){
-        SpiderService.indexWebPages();
+    public void scheduleIndexWebPages() {
+        spiderService.indexWebPages();
     }
 }
